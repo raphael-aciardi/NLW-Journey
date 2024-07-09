@@ -1,10 +1,18 @@
+const format = (data) => {
+    return {
+        day: dayjs(data).format("dddd")
+    }
+}
+
+
+
 const activity = {
     nome: "Almoço",
     data: new Date("2027-07-08 10:00"),
     finalizada: true,
 } 
 
-const activities = [
+let activities = [
     activity,
     {
         nome: 'Academia em grupo',
@@ -19,27 +27,40 @@ const activities = [
     },
 ]
 
-const createActivitiItem = (activity) => {
+//activities = []
+
+
+const createActivityItem = (activity) => {
     
     let input = '<input type="checkbox" '
 
     if(activity.finalizada) {
-        input = input + 'checked'
+        input += 'checked'
     }
 
     input += '>'
+    
+    const newDate = format(activity.data)
 
     return `
         <div>
             ${input}
             <span>${activity.nome}</span>
-            <time>${activity.data}</time>
+            <time>${newDate.day}</time>
         </div>
     `
 }
 
-const section = document.querySelector("section")
+const updateActivityList = () => {
+    const section = document.querySelector("section")
 
-for(let activity of activities){
-    section.innerHTML += createActivitiItem(activity)
+    if (activities.length === 0) {
+        section.innerHTML = `<p> Nenhuma atividade cadastrada</p> `
+    } 
+    
+    for(let activity of activities){
+        section.innerHTML += createActivityItem(activity)
+    }
 }
+
+updateActivityList()
