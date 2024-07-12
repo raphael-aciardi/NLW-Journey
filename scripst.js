@@ -34,7 +34,7 @@ let activities = [
     },
 ]
 
-//activities = []
+activities = []
 
 
 const createActivityItem = (activity) => {
@@ -88,7 +88,7 @@ const updateActivityList = () => {
     section.innerHTML = ''
 
     if (activities.length === 0) {
-        section.innerHTML = `<p>Nenhuma atividade cadastrada</p> `
+        section.innerHTML = `<p class="card-bg">Nenhuma atividade cadastrada</p> `
     } 
     
     for(let activity of activities){
